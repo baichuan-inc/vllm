@@ -786,7 +786,7 @@ class BaichuanBaseForCausalLM(nn.Module, SupportsLoRA, SupportsPP,
                 param = params_dict[name]
                 weight_loader = getattr(param, "weight_loader",
                                         default_weight_loader)
-                if "self_attn.K" in name or "self_attn.V" in name:
+                if "self_attn.conv_k" in name or "self_attn.conv_v" in name:
                     weight_loader = sharded_weight_loader(2)
                 weight_loader(param, loaded_weight)
 
